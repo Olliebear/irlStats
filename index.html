@@ -10,6 +10,18 @@
 
   <script>
   $(document).ready(function(){
+    for (var i =1960; i<2010; i++){
+      var opt = document.createElement('option')
+      $(opt).val(i);
+      $(opt).text(i);
+      $(YEAR_INPUT).append(opt);
+    }
+    for (var i=0; i<12; i++){
+      var opt = document.createElement('option');
+      $(opt).val(i);
+      $(opt).text(i+1);
+      $(MONTH_INPUT).append(opt);
+    }
 
   })
   </script>
@@ -22,15 +34,19 @@
   <div>
     Birthday:<br>
     Year:<input id = 'year'type='text'><br>
-    Month:<input id = 'month' type='text'><br>
+    Month:<select id = 'month'><br>
     Day:<input id = 'day'type='text'><br>
+  </div>
 
-
-
-
-
-
-
-
-
+  <div>
+    How much do you Excercise in a week?
+    <select id='excercise'>
+      <option value="0   - 30 minutes">level1</option>
+      <option value="31  - 60 minutes">level2</option>
+      <option value="61  - 90 minutes">level3</option>
+      <option value="91  - 120 minutes">level4</option>
+      <option value="121 - 150 minutes">level5</option>
+      <option value="151+ minutes">level6</option>
+    </select>
+  </div>
 </html>
