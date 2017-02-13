@@ -70,10 +70,10 @@ $(document).ready(function(){
 })
 
 <select>
-  <option value="0   - 30 minutes">level1</option>
-  <option value="31  - 60 minutes">level2</option>
-  <option value="61  - 90 minutes">level3</option>
-  <option value="91  - 120 minutes">level4</option>
-  <option value="121 - 150 minutes">level5</option>
-  <option value="151+ minutes">level6</option>
+  <option value=level1>"0   -  30 minutes"</option>
+  <option value=level2>"31  -  60 minutes"</option>
+  <option value=level3>"61  -  90 minutes"</option>
+  <option value=level4>"91  - 120 minutes"</option>
+  <option value=level5>"121 - 150 minutes"</option>
+  <option value=level6>"151+ minutes"</option>
 </select>
