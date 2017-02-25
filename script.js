@@ -1,4 +1,4 @@
-var input stats = {
+var inputStats = {
   'ht'       : null,
   'wt'       : null,
   'age'      : null,
@@ -11,7 +11,7 @@ var input stats = {
   'gameType' : null,
   'diet'     : {
 
-  }
+  },
   'charisma' : {
 
   }
@@ -26,31 +26,57 @@ var toYears = function(millis) {
 }
 
 var getAge = function(month, day, year) {
-  var birthTime = (new date(year,month,day)).getTime();
-  var currentTime = (new date()).getTime();
+  var birthTime = (new Date(year,month,day)).getTime();
+  var currentTime = (new Date()).getTime();
   return toYears(currentTime-birthTime);
 }
 
 var bell = function(x,mu,sig) {
-  var coeff= 1/Math.pow((2*siq*siq*Math.PI),.5);
+  var coeff= 1/Math.pow((2*sig*sig*Math.PI),.5);
   var top = -(x-mu)*(x-mu);
   var bottom = 2*sig*sig;
   return coeff*Math.exp(top/bottom);
 }
 
-var getStrength= function() {
-  var bmiVal = bell(BMI,(18.5+25)/2, BMI_SIG);
-  var age = getAge(/*yadda ya*/);
-  var ageVal = bell(age ,HEALTHY_AGE, AGE_SIG);
-
-  var score = bmiVal*ageVal*exercise_level;
+var getStrength= function(ht,wt,age,exercise) {
+  var bmiVal = bell(BMI(wt,ht),(18.5+25)/2, BMI_SIG);
+  var ageVal = bell(age,HEALTHY_AGE, AGE_SIG);
+  var score = Math.round(10000*bmiVal*ageVal*exercise);
   return score;
 }
 
-var get_exercise_level = function() {
-  var x = document.createElement("INPUT");
-  x.setAttribute("type", "range");
-  document.body.appendChild(x);
+var getWisdom = function(books, bookType, vgames, gameType, age){
+  var ageVal = bell(age, WISE_AGE,AGE_SIG);
+
+  return Math.round((books-vgames+6)*ageVal*2000);
+}
+
+var getLuck = function(birthday){
+  var list = birthday.split('/');
+  return Math.round((list[2]%7+list[0]%9)*(list[1]%3+list[0]%11)*(list[2]%3+list[1]%6)/4);
+}
+
+var getLevel = function(){
+  var total = 0;
+  for (var i in outputStats){
+    if (i != 'Level'){
+      total+=Number(outputStats[i]);
+    }
+  }
+  return Math.round(total/20);
+}
+
+var getInputs = function(){
+  var month = Number($(MONTH_INPUT).val())+1;
+  var day = $(DAY_INPUT).val();
+  var year = $(YEAR_INPUT).val();
+  inputStats['ht']=$(HEIGHT_INPUT).val();
+  inputStats['wt']=$(WEIGHT_INPUT).val();
+  inputStats['birthday']=month+'/'+day+'/'+year;
+  inputStats['age']=getAge(month,day,year);
+  inputStats['exercise']=$(EXERCISE_INPUT).val();
+  inputStats['vGames']=$(VGAMES_INPUT).val();
+  inputStats['books']=$(READ_INPUT).val();
 }
 
 $(document).ready(function(){
@@ -64,7 +90,25 @@ $(document).ready(function(){
     'Luck':null,
 
   }
-  $(/*get stats button*/).click(function(ev,er){
-    outputStats['Strength']=getStrength();
+  $(GET_STATS_BUTTON).click(function(ev,er){
+    $(OUTPUT_DIV).empty();
+    getInputs();
+    outputStats['Strength']=getStrength(inputStats['ht'], inputStats['wt'],inputStats['age'],inputStats['exercise']);
+    outputStats['Wisdom']=getWisdom(inputStats['books'],inputStats['bookType'],inputStats['vGames'],inputStats['gameType'],inputStats['age']);
+    outputStats['Luck']=getLuck(inputStats['birthday']);
+
+    outputStats['Level'] = getLevel();
+    for (var i in outputStats){
+      var stat = outputStats[i];
+      //for errorHandling
+      /*if (!stat){
+        $(OUTPUT_DIV).empty();
+        $(OUTPUT_DIV).append('Please Fill in all the fields :)');
+        return;
+      }*/
+      var div = document.createElement('div');
+      $(div).html(i+': '+stat);
+      $(OUTPUT_DIV).append(div);
+    }
   })
 })

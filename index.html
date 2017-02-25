@@ -28,25 +28,61 @@
 </head>
 <body>
   <div>
-    Height:<input id = 'height' type='text'><br>
-    Weight:<input id = 'weight' type='text'><br>
+    Height (in):<input id = 'height' type='text'><br>
+    Weight (lbs):<input id = 'weight' type='text'><br>
   </div>
+  <br>
   <div>
     Birthday:<br>
     Year:<input id = 'year'type='text'><br>
-    Month:<select id = 'month'><br>
-    Day:<input id = 'day'type='text'><br>
+    Month:<select id = 'month'></select><br>
+    Day:<input id = 'day'type='text'><br><br>
   </div>
 
   <div>
     How much do you Excercise in a week?
     <select id='excercise'>
-      <option value="0   - 30 minutes">level1</option>
-      <option value="31  - 60 minutes">level2</option>
-      <option value="61  - 90 minutes">level3</option>
-      <option value="91  - 120 minutes">level4</option>
-      <option value="121 - 150 minutes">level5</option>
-      <option value="151+ minutes">level6</option>
+      <option value="1">0   - 30 minutes</option>
+      <option value="2">31  - 60 minutes</option>
+      <option value="3">61  - 90 minutes</option>
+      <option value="4">91  - 120 minutes</option>
+      <option value="5">121 - 150 minutes</option>
+      <option value="6">151+ minutes</option>
     </select>
   </div>
+  <br>
+  <div>
+    How much time do you spend on Video Games in a week?
+    <select id='vgames'>
+      <option value="1">0   - 30 minutes</option>
+      <option value="2">31  - 60 minutes</option>
+      <option value="3">61  - 90 minutes</option>
+      <option value="4">91  - 120 minutes</option>
+      <option value="5">121 - 150 minutes</option>
+      <option value="6">151+ minutes</option>
+    </select>
+  </div>
+  <br>
+  <div>
+    How much do you Read in a week?
+    <select id='read'>
+      <option value="1">0   - 30 minutes</option>
+      <option value="2">31  - 60 minutes</option>
+      <option value="3">61  - 90 minutes</option>
+      <option value="4">91  - 120 minutes</option>
+      <option value="5">121 - 150 minutes</option>
+      <option value="6">151+ minutes</option>
+    </select>
+  </div>
+  <br>
+  <div>
+    <button id = 'getStats'>
+      Press Here to Calculate your Stats!!! :D
+    </button>
+  </div>
+  <br>
+
+  <div id = 'output'>
+  </div>
+</body>
 </html>

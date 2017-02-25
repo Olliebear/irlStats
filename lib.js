@@ -8,8 +8,15 @@ WEIGHT_INPUT = '#weight';
 YEAR_INPUT = '#year';
 MONTH_INPUT = '#month';
 DAY_INPUT = '#day';
-EXCERCISE_INPUT ='#excercise';
+EXERCISE_INPUT ='#excercise';
+VGAMES_INPUT = '#vgames';
+READ_INPUT = '#read';
 
-BMI_SIG = 1;
+GET_STATS_BUTTON = '#getStats';
+
+OUTPUT_DIV = '#output';
+
+BMI_SIG = 10;
 HEALTHY_AGE = 25;
-AGE_SIG = 1;
+WISE_AGE = 50;
+AGE_SIG = 15;
