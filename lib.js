@@ -11,6 +11,7 @@ DAY_INPUT = '#day';
 EXERCISE_INPUT ='#excercise';
 VGAMES_INPUT = '#vgames';
 READ_INPUT = '#read';
+GAMETYPE_INPUT = '#gameType';
 
 GET_STATS_BUTTON = '#getStats';
 
