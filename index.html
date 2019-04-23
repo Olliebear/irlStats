@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html>
 
+<!-- ==>My code is pretty shitty, but feel free to look at anything in here :) -->
 <head>
+  Calculate your IRL Stats!
   <script src="jquery/jquery.min.js"></script>
   <script src='lib.js'></script>
   <script src="script.js"></script>
@@ -26,7 +28,9 @@
   })
   </script>
 </head>
+<br>
 <body>
+  <br>
   <div>
     Height (in):<input id = 'height' type='text'><br>
     Weight (lbs):<input id = 'weight' type='text'><br>
@@ -82,6 +86,51 @@
       <option value="6">151+ minutes</option>
     </select>
   </div>
+  <div>
+    What is your favorite genre of Music?
+    <select id='music'>
+      <option value='pop'>Pop</option>
+      <option value='alt'>Alternative</option>
+      <option value='punk'>Punk</option>
+      <option value='country'>Country</option>
+      <option value='hiphop'>Hip hop</option>
+      <option value='jazz'>Jazz</option>
+      <option value='classical'>Classical</option>
+      <option value='edm'>EDM</option>
+    </select>
+  </div>
+  <br>
+  <div id='charisma'>
+    <p>
+      You see a $20 bill on the ground. What do you do?
+      <select id='money_question'>
+        <option value=-4>Take it!</option>
+        <option value=7>See if someone around you dropped it</option>
+        <option value=4>Donate the money to a charity</option>
+        <option value=0>Ignore it :P</option>
+      </select>
+    </p>
+    <p>
+      If you won the lottery, what would you buy first?
+      <select id='lottery_question'>
+        <option value=8>Throw a huge party!</option>
+        <option value=4>Donate it to charity</option>
+        <option value=-6>Pay off your debt</option>
+        <option value=-1>Invest it</option>
+      </select>
+    </p>
+    <p>
+      What's your favorite flavor of poptart?
+      <select id='poptart_question'>
+        <option value=2>Brown Sugar Cinnamon</option>
+        <option value=5>Blueberry</option>
+        <option value=7>Strawberry</option>
+        <option value=3>S'mores</option>
+        <option value=-6>Unfrosted</option>
+        <option value=-10>I don't like poptarts</option>
+      </select>
+    </p>
+  </div>
   <br>
   <div>
     <button id = 'getStats'>
@@ -95,7 +144,7 @@
   <br>
   <br>
   <div>
-    Feedback? Email me at nicarons[at]mit.edu
+    Do you have any feedback? Email me at irl_stats[at]mit.edu :)
     <br>
     I hope you enjoyed it!
   </div>

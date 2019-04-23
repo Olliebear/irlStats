@@ -1,4 +1,4 @@
-var inputStats = {
+var inputStats = { //not all inputs are here. see lib.js for music and
   'ht'       : null,
   'wt'       : null,
   'age'      : null,
@@ -9,12 +9,6 @@ var inputStats = {
   'bookType' : null,
   'vGames'   : null,
   'gameType' : null,
-  'diet'     : {
-
-  },
-  'charisma' : {
-
-  }
 }
 
 var BMI = function(wt,ht) {
@@ -68,7 +62,7 @@ var getLevel = function(){
 
 var getDexterity = function(ht, wt, age, exercise, vgames, gameType){
   var ageVal = bell(age, HEALTHY_AGE, AGE_SIG);
-  var bmiVal = bell(BMI(ht,wt),(18.5+25)/2, BMI_SIG);
+  var bmiVal = bell(BMI(ht,wt),(18.5+25)/2, BMI_SIG); //18.5 and 25 are limits of healthy on bmi
   var multi =1;
   switch (gameType) {
     case 'RPG':
@@ -90,8 +84,27 @@ var getDexterity = function(ht, wt, age, exercise, vgames, gameType){
 
 var getDefense =function(ht,wt,age,excercise){
   var ageVal = bell(age, HEALTHY_AGE, AGE_SIG);
-  var bmiVal = bell(BMI(ht,wt), 25, BMI_SIG);
+  var bmiVal = bell(BMI(ht,wt), 25, BMI_SIG); //25 is upper limit of healthy on bmi
   return Math.round(180000*excercise*bmiVal*ageVal);
+}
+
+var getCharisma = function(){
+  var val=20;
+  selects=$(CHARISMA_INPUT).children('p').children('select');
+  console.log(selects)
+  for (var i=0; i<selects.length;i++){
+    val+=Number($(selects[i]).val())
+  }
+  return val
+
+}
+
+var add_music_contrib=function(){
+  for (var i in outputStats){
+    if (i != 'Level'){
+      outputStats[i]+=music_contrib(i);
+    }
+  }
 }
 
 var getInputs = function(){
@@ -110,9 +123,9 @@ var getInputs = function(){
 
 $(document).ready(function(){
   outputStats = {
+    'Level':null,
     'Strength':null,
     'Dexterity':null,
-    'Level':null,
     'Defense':null,
     'Charisma':null,
     'Wisdom':null,
@@ -127,6 +140,8 @@ $(document).ready(function(){
     outputStats['Luck']=getLuck(inputStats['birthday']);
     outputStats['Dexterity']=getDexterity(inputStats['ht'],inputStats['wt'],inputStats['age'],inputStats['exercise'],inputStats['vGames'],inputStats['gameType']);
     outputStats['Defense']=getDefense(inputStats['ht'],inputStats['wt'],inputStats['age'],inputStats['exercise']);
+    outputStats['Charisma']=getCharisma();
+    add_music_contrib();
     outputStats['Level'] = getLevel();
     for (var i in outputStats){
       var stat = outputStats[i];
